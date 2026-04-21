@@ -1,0 +1,21 @@
+name: HTMLHint Check
+
+on: [push, pull_request] # يعمل الكود عند الرفع أو فتح طلب سحب
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-node-version: '20'
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Run HTMLHint
+        run: htmlhint "**/*.html" # سيقوم بفحص كل ملفات html في المشروع
